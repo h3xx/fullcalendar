@@ -138,10 +138,15 @@ function ResourceView(element, calendar, viewName) {
 			"<tbody>";
 		for (i=0; i<maxRowCnt; i++) {
 			id = resources[i]['id'];
-			resourceName = resources[i]['name'];
+			
+			var resourceHTML = resources[i]['html'];
+			if (typeof resourceHTML === "undefined"){
+				resourceHTML = resources[i]['name'];
+			}
 			
 			s +=
-				"<tr class='fc-resourcerow-" + id + "'><td class='fc-resourceName'>" + resourceName + "</td>";
+				"<tr class='fc-resourcerow-" + id + "'><td class='fc-resourceName'>" + resourceHTML + "</td>";
+		
 			for (j=0; j<colCnt; j++) {
 				s +=
 					"<td class='fc- " + contentClass + " fc-day" + j + " fc-resource" + id +"'>" + // need fc- for setDayID

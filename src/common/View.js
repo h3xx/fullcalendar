@@ -49,12 +49,28 @@ function View(element, calendar, viewName) {
 		return evs;
 	}
 	
-	function opt(name, viewNameOverride) {
+	function opt(name, viewNameOverride,secondProp) {
 		var v = options[name];
 		if (typeof v == 'object') {
+			if(name == 'resources') { //NEW: If name is type 'resources' then augment to get given event
+				return getResourceOpt(viewNameOverride,secondProp);
+			}
 			return smartProperty(v, viewNameOverride || viewName);
 		}
 		return v;
+	}
+
+	//Getter for resource opts
+	function getResourceOpt(resourceid,prop){
+		var v = options['resources'];
+		if (typeof v == 'object') {
+			for(i in v){
+				if (v[i].id == resourceid){
+					return v[i][prop];
+				}
+			}
+		}
+		return null;
 	}
 
 	

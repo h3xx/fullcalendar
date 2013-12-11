@@ -310,24 +310,27 @@ function getSkinCss(event, opt) {
 	var eventColor = event.color;
 	var sourceColor = source.color;
 	var optionColor = opt('eventColor');
-	var backgroundColor =
+		var backgroundColor =
 		event.backgroundColor ||
 		eventColor ||
 		source.backgroundColor ||
 		sourceColor ||
 		opt('eventBackgroundColor') ||
-		optionColor;
+		optionColor ||
+		opt('resources',event.resource,'color');
 	var borderColor =
 		event.borderColor ||
 		eventColor ||
 		source.borderColor ||
 		sourceColor ||
 		opt('eventBorderColor') ||
-		optionColor;
+		optionColor ||
+		opt('resources',event.resource,'boardercolor');
 	var textColor =
 		event.textColor ||
 		source.textColor ||
-		opt('eventTextColor');
+		opt('eventTextColor') ||
+		opt('resources',event.resource,'textcolor');
 	var statements = [];
 	if (backgroundColor) {
 		statements.push('background-color:' + backgroundColor);

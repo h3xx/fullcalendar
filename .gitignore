@@ -10,3 +10,5 @@ node_modules
 # for bower
 components
 /.project
+/nbproject/private/
+nbproject/project.properties
