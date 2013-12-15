@@ -34,7 +34,7 @@ function Calendar(element, options, eventSources, resourceSources) {
 	
 	
 	// imports
-	EventManager.call(t, options, eventSources);
+	EventManager.call(t, options, eventSources, resourceSources);
 	var isFetchNeeded = t.isFetchNeeded;
 	var fetchEvents = t.fetchEvents;
 	

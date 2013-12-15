@@ -46,8 +46,6 @@ angular.module('ui.calendar', [])
       };
       scope.destroy();
       scope.init = function(){
-		  console.log(sources);
-		 console.log(resource);
         var options = { eventSources: sources, resources: resource };
         angular.extend(options, uiCalendarConfig, attrs.uiCalendar ? scope.$parent.$eval(attrs.uiCalendar) : {});
         scope.calendar.fullCalendar(options);
@@ -161,8 +159,10 @@ angular.module('ui.calendar', [])
           e.__uiCalId = eventSerialId++;
         }
         // This extracts all the information we need from the event. http://jsperf.com/angular-calendar-events-fingerprint/3
-        return "" + e.__uiCalId + (e.id || '') + (e.title || '') + (e.url || '') + (+e.start || '') + (+e.end || '') +
-            (e.allDay || false) + (e.className || '');
+        var boog =  "" + e.__uiCalId + (e.id || '') + (e.title || '') + (e.url || '') + (+e.start || '') + (+e.end || '') +
+            (e.allDay || false) + (e.className || '') + (e.resource || '');
+		return boog;
+	
       });
       eventsWatcher.subscribe(scope, function(newTokens, oldTokens) {
         if (sourcesChanged) {

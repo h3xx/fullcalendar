@@ -306,18 +306,19 @@ function setDayID(cell, date) {
 
 
 function getSkinCss(event, opt) {
+	
 	var source = event.source || {};
 	var eventColor = event.color;
 	var sourceColor = source.color;
 	var optionColor = opt('eventColor');
-		var backgroundColor =
+	var backgroundColor =
+		opt('resources',event.resource,'color') ||
 		event.backgroundColor ||
 		eventColor ||
 		source.backgroundColor ||
 		sourceColor ||
 		opt('eventBackgroundColor') ||
-		optionColor ||
-		opt('resources',event.resource,'color');
+		optionColor;
 	var borderColor =
 		event.borderColor ||
 		eventColor ||

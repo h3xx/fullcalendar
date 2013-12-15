@@ -10,7 +10,7 @@ var ajaxDefaults = {
 var eventGUID = 1;
 
 
-function EventManager(options, _sources) {
+function EventManager(options, _sources, _resources) {
 	var t = this;
 	
 	
@@ -24,7 +24,6 @@ function EventManager(options, _sources) {
 	t.removeEvents = removeEvents;
 	t.clientEvents = clientEvents;
 	t.normalizeEvent = normalizeEvent;
-	
 	
 	// imports
 	var trigger = t.trigger;
@@ -41,10 +40,11 @@ function EventManager(options, _sources) {
 	var loadingLevel = 0;
 	var cache = [];
 	
-	
 	for (var i=0; i<_sources.length; i++) {
 		_addEventSource(_sources[i]);
 	}
+	
+	//var resources = _resources;
 	
 	
 	
@@ -212,8 +212,6 @@ function EventManager(options, _sources) {
 		reportEvents(cache);
 	}
 	
-	
-	
 	/* Manipulation
 	-----------------------------------------------------------------------------*/
 	
@@ -228,6 +226,11 @@ function EventManager(options, _sources) {
 		for (i=0; i<len; i++) {
 			e = cache[i];
 			if (e._id == event._id && e != event) {
+				
+				if (e.resource != event.resource){								//They share ID however arn't the same
+					continue;
+				}
+				
 				e.start = new Date(+e.start + startDelta);
 				if (event.end) {
 					if (e.end) {
@@ -238,6 +241,13 @@ function EventManager(options, _sources) {
 				}else{
 					e.end = null;
 				}
+				
+				if (e.extraA == "SOMETHINGELSE"){
+					console.log(e);
+					console.log(event);
+				}
+				
+
 				e.title = event.title;
 				e.url = event.url;
 				e.allDay = event.allDay;
@@ -395,4 +405,4 @@ function EventManager(options, _sources) {
 	}
 
 
-}
+        }

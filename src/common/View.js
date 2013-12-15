@@ -63,6 +63,7 @@ function View(element, calendar, viewName) {
 	//Getter for resource opts
 	function getResourceOpt(resourceid,prop){
 		var v = options['resources'];
+		//var v = v[0;															
 		if (typeof v == 'object') {
 			for(i in v){
 				if (v[i].id == resourceid){
