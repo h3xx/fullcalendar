@@ -44,7 +44,7 @@ function EventManager(options, _sources, _resources) {
 		_addEventSource(_sources[i]);
 	}
 	
-	//var resources = _resources;
+	var resources = _resources;
 	
 	
 	
@@ -227,6 +227,7 @@ function EventManager(options, _sources, _resources) {
 			e = cache[i];
 			if (e._id == event._id && e != event) {
 				
+				
 				if (e.resource != event.resource){								//They share ID however arn't the same
 					continue;
 				}
@@ -241,13 +242,6 @@ function EventManager(options, _sources, _resources) {
 				}else{
 					e.end = null;
 				}
-				
-				if (e.extraA == "SOMETHINGELSE"){
-					console.log(e);
-					console.log(event);
-				}
-				
-
 				e.title = event.title;
 				e.url = event.url;
 				e.allDay = event.allDay;
@@ -404,5 +398,4 @@ function EventManager(options, _sources, _resources) {
 		return ((typeof source == 'object') ? (source.events || source.url) : '') || source;
 	}
 
-
-        }
+}

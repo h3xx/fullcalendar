@@ -76,7 +76,7 @@ function CalendarCtrl($scope) {
 
 			
 		$scope.actionOnEventDrop = function( event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view ) { 
-			event.resource = view;
+			//event.resource = view;
 			
 			console.log(event);
 			//calendar.fullCalendar( 'updateEvent', event )
@@ -103,9 +103,9 @@ function CalendarCtrl($scope) {
 				header: {
 					left: 'prev,next today',
 					center: 'title',
-					right: 'resourceDay,resourceWeek,resourceNextWeeks,resourceMonth'
+					right: 'resourceDay,basicWeek,basicDay'
 				},
-				defaultView: 'resourceWeek',
+				defaultView: 'resourceDay',
 				firstDay: 1, 	
 				editable: true,
 				selectable: true,
