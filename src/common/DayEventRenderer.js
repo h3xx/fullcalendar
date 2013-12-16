@@ -165,31 +165,38 @@ function DayEventRenderer() {
 			}
 			
 			// TODO: better implementation for this one.. 
+			var isResource = false;
 			if (viewName == 'resourceMonth' || viewName == 'resourceNextWeeks' || viewName == 'resourceWeek') {
 				leftCol = dateCell(seg.start).col;
 				rightCol = dateCell(seg.end).col-1;
 				if(!weekends) {
 					leftCol = dateCell(seg.start).col;
 					rightCol = dateCell(addDays(cloneDate(seg.end),-1)).col;
-					if (seg.start.getDay() == 6 || seg.start.getDay() == 0) leftCol++;
+					if (seg.start.getDay() == 6 || seg.start.getDay() == 0){
+						leftCol++;
+					}
 				}
-			}
-			else if (viewName == 'resourceDay') {
+				isResource = true;
+			}else if (viewName == 'resourceDay') {
 				// hack for resourceDay view
 				leftCol = timeOfDayCol(seg.start);
 				rightCol = timeOfDayCol(seg.end)-1;
-
-				if(((seg.end-seg.start)/1000/60) < opt('slotMinutes')) leftCol--;
-
+				
+				if(((seg.end-seg.start)/1000/60) < opt('slotMinutes')){
+					leftCol--;
+				}
+				isResource = true;
 			}
-			
-			if (rtl) {
-				left = seg.isEnd ? colContentLeft(leftCol) : minLeft;
-				right = seg.isStart ? colContentRight(rightCol) : maxLeft;
-			}else{
-				left = seg.isStart ? colContentLeft(leftCol) : minLeft;
-				right = seg.isEnd ? colContentRight(rightCol) : maxLeft;
+			if (isResource == true){
+				if (rtl) {
+					left = seg.isEnd ? colContentLeft(leftCol) : minLeft;
+					right = seg.isStart ? colContentRight(rightCol) : maxLeft;
+				}else{
+					left = seg.isStart ? colContentLeft(leftCol) : minLeft;
+					right = seg.isEnd ? colContentRight(rightCol) : maxLeft;
+				}
 			}
+
 			
 			classes = classes.concat(event.className);
 			if (event.source) {

@@ -54,7 +54,8 @@ function CalendarCtrl($scope) {
 					end: new Date(y, m, d, 14, 0),
 					allDay: false,
 					resource: 3
-				}		
+				}
+				
 			];
 		
 		$scope.actionOnCalSelect = function(start, end, allDay, jsEvent, view, resource){
@@ -103,7 +104,7 @@ function CalendarCtrl($scope) {
 				header: {
 					left: 'prev,next today',
 					center: 'title',
-					right: 'resourceDay,basicWeek,basicDay'
+					right: 'resourceDay,agendaWeek,agendaDay'
 				},
 				defaultView: 'resourceDay',
 				firstDay: 1, 	

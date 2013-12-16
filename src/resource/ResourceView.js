@@ -590,8 +590,6 @@ function ResourceView(element, calendar, viewName) {
 		}		
 		minutes = closestMinute;
 
-
-		
 		for ( var i = 0; i < colCnt; i++) {
 			if (indexDate(i).getHours() == hours && indexDate(i).getMinutes() == minutes) {
 				return i;
