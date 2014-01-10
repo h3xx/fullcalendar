@@ -186,20 +186,21 @@ a.fc-event,
 ------------------------------------------------------------------------*/
 
 .fc-event-hori {
-	border-width: 1px 0;
+	border-width: 0 0 0 0;
+	/*border-width: 1px 0;*/
 	margin-bottom: 1px;
 	}
 
 .fc-ltr .fc-event-hori.fc-event-start,
 .fc-rtl .fc-event-hori.fc-event-end {
-	border-left-width: 1px;
+	/*border-left-width: 1px;*/
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
 	}
 
 .fc-ltr .fc-event-hori.fc-event-end,
 .fc-rtl .fc-event-hori.fc-event-start {
-	border-right-width: 1px;
+	/*border-right-width: 1px;*/
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
 	}

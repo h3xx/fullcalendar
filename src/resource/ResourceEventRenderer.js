@@ -75,7 +75,7 @@ function ResourceEventRenderer() {
 		// for resource day view exclEndDay returns next day, which is incorrect if there's no end time for event.
 		if (viewName == 'resourceDay') {			
 			visEventsEnds = $.map(events, function(event) {
-				return event.end || addMinutes(cloneDate(event.start), opt('slotMinutes'));
+				return event.end || addMinutes(cloneDate(event.start), opt('slotMinutesRes'));
 			});
 		}
 		else {
@@ -170,7 +170,7 @@ function ResourceEventRenderer() {
 						newResourceId = resources[cell.row].id; 
 						
 						if (viewName == 'resourceDay') {
-							minuteDelta = colDelta * (opt('isRTL') ? -1 : 1) * opt('slotMinutes');
+							minuteDelta = colDelta * (opt('isRTL') ? -1 : 1) * opt('slotMinutesRes');
 							renderDayOverlay(
 								addMinutes(cloneDate(event.start), minuteDelta),
 								addMinutes(cloneDate(event.end), minuteDelta), 
@@ -345,7 +345,7 @@ function ResourceEventRenderer() {
 					var c = cell.col;
 					
 					if (viewName == 'resourceDay') {
-						minuteDelta = (opt('slotMinutes') * c*dis+dit) - (opt('slotMinutes') * origCell.col*dis+dit);
+						minuteDelta = (opt('slotMinutesRes') * c*dis+dit) - (opt('slotMinutesRes') * origCell.col*dis+dit);
 						var newEnd = addMinutes(eventEnd(event), minuteDelta, true);
 					}
 					else {

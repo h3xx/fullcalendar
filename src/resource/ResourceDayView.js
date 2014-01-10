@@ -38,7 +38,7 @@ function ResourceDayView(element, calendar) {
 		t.visStart = visStart;
 		t.visEnd = visEnd;
 
-		var cols = Math.round((visEnd - visStart) / 1000 / 60 / opt('slotMinutes'));
+		var cols = Math.round((visEnd - visStart) / 1000 / 60 / opt('slotMinutesRes'));
 		renderBasic(getResources.length, getResources.length, cols, false);
 	}
 	

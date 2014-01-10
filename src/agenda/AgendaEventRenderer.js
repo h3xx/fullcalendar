@@ -181,7 +181,7 @@ function AgendaEventRenderer() {
 			colI = seg.col;
 			levelI = seg.level;
 			forward = seg.forward || 0;
-			leftmost = colContentLeft(colI*dis + dit);
+			leftmost = colContentLeft(colI * dis + dit);
 			availWidth = colContentRight(colI*dis + dit) - leftmost;
 			availWidth = Math.min(availWidth-6, availWidth*.95); // TODO: move this to CSS
 			if (levelI) {
@@ -279,7 +279,7 @@ function AgendaEventRenderer() {
 	function slotSegHtml(event, seg) {
 		var html = "<";
 		var url = event.url;
-		var skinCss = getSkinCss(event, opt);
+		var skinCss = getSkinCss(event, opt,7);		
 		var classes = ['fc-event', 'fc-event-vert'];
 		if (isEventDraggable(event)) {
 			classes.push('fc-event-draggable');

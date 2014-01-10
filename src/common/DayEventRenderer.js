@@ -135,11 +135,15 @@ function DayEventRenderer() {
 		var left;
 		var right;
 		var skinCss;
+		var resCSS;
 		var html = '';
 		var viewName = getViewName();
 		var weekends = opt('weekends'), weekendTestDate, weekendSumColStart, weekendSumColEnd;
+		
+		var imagedir = opt('imgdir');
+		
 		// calculate desired position/dimensions, create html
-		for (i=0; i<segCnt; i++) {
+		for (i=0; i<segCnt; i++){
 			seg = segs[i];
 			event = seg.event;
 			classes = ['fc-event', 'fc-event-hori'];
@@ -152,18 +156,7 @@ function DayEventRenderer() {
 			if (seg.isEnd) {
 				classes.push('fc-event-end');
 			}
-			if (rtl) {
-				leftCol = dayOfWeekCol(seg.end.getDay()-1);
-				rightCol = dayOfWeekCol(seg.start.getDay());
-				left = seg.isEnd ? colContentLeft(leftCol) : minLeft;
-				right = seg.isStart ? colContentRight(rightCol) : maxLeft;
-			}else{
-				leftCol = dayOfWeekCol(seg.start.getDay());
-				rightCol = dayOfWeekCol(seg.end.getDay()-1);
-				left = seg.isStart ? colContentLeft(leftCol) : minLeft;
-				right = seg.isEnd ? colContentRight(rightCol) : maxLeft;
-			}
-			
+		
 			// TODO: better implementation for this one.. 
 			var isResource = false;
 			if (viewName == 'resourceMonth' || viewName == 'resourceNextWeeks' || viewName == 'resourceWeek') {
@@ -176,64 +169,88 @@ function DayEventRenderer() {
 						leftCol++;
 					}
 				}
-				isResource = true;
 			}else if (viewName == 'resourceDay') {
 				// hack for resourceDay view
 				leftCol = timeOfDayCol(seg.start);
 				rightCol = timeOfDayCol(seg.end)-1;
 				
-				if(((seg.end-seg.start)/1000/60) < opt('slotMinutes')){
+				/*
+				if(((seg.end-seg.start)/1000/60) < opt('slotMinutesRes')){
 					leftCol--;
-				}
-				isResource = true;
-			}
-			if (isResource == true){
+				}*/
+				if(((seg.end-seg.start)/1000/60) < opt('slotMinutes') && leftCol > 0) leftCol--;
+				if (leftCol > 0 && rightCol == -1) rightCol = 24;
+				if (leftCol == 0 && rightCol == -1) rightCol = 0;
+				
+			}else{
 				if (rtl) {
-					left = seg.isEnd ? colContentLeft(leftCol) : minLeft;
-					right = seg.isStart ? colContentRight(rightCol) : maxLeft;
+					leftCol = dayOfWeekCol(seg.end.getDay()-1);
+					rightCol = dayOfWeekCol(seg.start.getDay());
 				}else{
-					left = seg.isStart ? colContentLeft(leftCol) : minLeft;
-					right = seg.isEnd ? colContentRight(rightCol) : maxLeft;
+					leftCol = dayOfWeekCol(seg.start.getDay());
+					rightCol = dayOfWeekCol(seg.end.getDay()-1);
 				}
+			}
+			//
+			if(rtl){
+				left = seg.isEnd ? colContentLeft(leftCol)  : minLeft;
+				right = seg.isStart ? colContentRight(rightCol) : maxLeft;
+			}else{
+				left = seg.isStart ? colContentLeft(leftCol) : minLeft;
+				right = seg.isEnd ? colContentRight(rightCol) : maxLeft;
 			}
 
-			
 			classes = classes.concat(event.className);
 			if (event.source) {
 				classes = classes.concat(event.source.className || []);
 			}
+			
+			
 			url = event.url;
-			skinCss = getSkinCss(event, opt);
+			
+			//backgroundCss = getSkinCss(event, opt,1);
+			//boarderCss = getSkinCss(event, opt,2);
+			textCss = getSkinCss(event, opt,4);
+			skinCss = getSkinCss(event, opt,7);
+			resCSS = getSkinCss(event,opt,8);
+			//START HTML
+			
 			if (url) {
 				html += "<a href='" + htmlEscape(url) + "'";
 			}else{
 				html += "<div";
 			}
 			html +=
-				" class='" + classes.join(' ') + "'" +
+				" class='" + classes.join(' ') + " schedule-tile'" +
 				" style='position:absolute;z-index:8;left:"+left+"px;" + skinCss + "'" +
 				">" +
-				"<div class='fc-event-inner'" +
-				(skinCss ? " style='" + skinCss + "'" : "") +
+				"<div class='fc-event-inner schedule-tile-content'" +
 				">";
+		
 			if (!event.allDay && seg.isStart) {
 				html +=
-					"<span class='fc-event-time'>" +
+					"<span class='fc-event-time schedule-tile-time'>" +
 					htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) +
 					"</span>";
 			}
 			html +=
-				"<span class='fc-event-title' " + (skinCss ? " style='" + skinCss + "'" : "") + ">" + event.title + "</span>" +
+				"<span class='fc-event-title schedule-tile-title' " + (textCss ? " style='" + textCss + "'" : "") + ">" + event.title + "</span>" +
 				"</div>";
+		
+			html +=	"<div " + (resCSS ? " style='" + resCSS + "'" : "") + "class='staff-color-bar'></div>" +
+					"<img class='job-status-flag' src='"+ imagedir + "flag-" + event.status + ".png'>";
+		
 			if (seg.isEnd && isEventResizable(event)) {
 				html +=
 					"<div class='ui-resizable-handle ui-resizable-" + (rtl ? 'w' : 'e') + "'>" +
-					"&nbsp;&nbsp;&nbsp;" + // makes hit area a lot better for IE6/7
+					"<div class='drager'>--</div>" + // makes hit area a lot better for IE6/7
 					"</div>";
 			}
 			
 			html +=
 				"</" + (url ? "a" : "div" ) + ">";
+		
+			//END HTML
 			seg.left = left;
 			seg.outerWidth = right - left;
 			seg.startCol = leftCol;
@@ -242,6 +259,14 @@ function DayEventRenderer() {
 		return html;
 	}
 	
+	
+	function falseCheck(val){
+		if (val == false){
+			return ' false';
+		}else{
+			return ' true';
+		}
+	}
 	
 	function daySegElementResolve(segs, elements) { // sets seg.element
 		var i;

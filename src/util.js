@@ -304,43 +304,63 @@ function setDayID(cell, date) {
 	});
 }
 
-
-function getSkinCss(event, opt) {
-	
+//Flags are 1 = Background, 2 = border, 4= text, 8 = resourceskin
+function getSkinCss(event, opt, flags) {
 	var source = event.source || {};
 	var eventColor = event.color;
 	var sourceColor = source.color;
 	var optionColor = opt('eventColor');
-	var backgroundColor =
-		opt('resources',event.resource,'color') ||
-		event.backgroundColor ||
-		eventColor ||
-		source.backgroundColor ||
-		sourceColor ||
-		opt('eventBackgroundColor') ||
-		optionColor;
-	var borderColor =
-		event.borderColor ||
-		eventColor ||
-		source.borderColor ||
-		sourceColor ||
-		opt('eventBorderColor') ||
-		optionColor ||
-		opt('resources',event.resource,'boardercolor');
-	var textColor =
-		event.textColor ||
-		source.textColor ||
-		opt('eventTextColor') ||
-		opt('resources',event.resource,'textcolor');
-	var statements = [];
-	if (backgroundColor) {
-		statements.push('background-color:' + backgroundColor);
+	
+	var statements = [];	
+	
+	if (flags & 1){
+		var backgroundColor =
+			opt('resources',event.resource,'color') ||
+			event.backgroundColor ||
+			eventColor ||
+			source.backgroundColor ||
+			sourceColor ||
+			opt('eventBackgroundColor') ||
+			optionColor;
+		if (backgroundColor) {
+			statements.push('background-color:' + backgroundColor);
+		}
 	}
-	if (borderColor) {
-		statements.push('border-color:' + borderColor);
+	if (flags & 2){
+		var borderColor =
+			event.borderColor ||
+			eventColor ||
+			source.borderColor ||
+			sourceColor ||
+			opt('eventBorderColor') ||
+			optionColor ||
+			opt('resources',event.resource,'boardercolor');
+		if (borderColor) {
+			statements.push('border-color:' + borderColor);
+		}
 	}
-	if (textColor) {
-		statements.push('color:' + textColor);
+	if (flags & 4){
+		var textColor =
+			event.textColor ||
+			source.textColor ||
+			opt('eventTextColor') ||
+			opt('resources',event.resource,'textcolor');
+		if (textColor) {
+			statements.push('color:' + textColor);
+		}
+	}
+	if (flags & 8){
+		var resColor =
+			opt('resources',event.resource,'rescolor') ||
+			event.backgroundColor ||
+			eventColor ||
+			source.backgroundColor ||
+			sourceColor ||
+			opt('eventBackgroundColor') ||
+			optionColor;
+		if (resColor) {
+			statements.push('background-color:' + resColor);
+		}
 	}
 	return statements.join(';');
 }

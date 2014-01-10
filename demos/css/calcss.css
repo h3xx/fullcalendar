@@ -1,0 +1,849 @@
+.pop-up{
+	position: fixed;
+	background: #D2E0E6;
+	border-radius: 5px;
+	padding: 5px;
+	z-index: 9999;
+}
+
+.drager{
+	margin-top:10px;
+	color: #A2A2A2;
+	-webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+	/* NEW SCHEDULER */
+
+#schedule-wrapper-right {
+	
+	width:1400px;
+	margin-right:15px;
+	padding-left: 30px;
+	vertical-align: top;
+	padding-top:30px;
+	padding-bottom:30px;
+
+}
+
+#schedule-wrapper-right a.btn.add-job {
+	float:left;
+	margin-top:0px !important;
+	border-radius:3px !important;
+
+}
+
+#schedule-wrapper-header {
+	padding-top:0px;
+	position:relative;
+	width:1400px;
+
+}
+
+#schedule-wrapper-header .workgroup-select{
+	margin-left:10px;
+	box-shadow:none;
+	padding: 9px 15px 7px 10px;
+	margin-top:0px;
+
+}
+
+#schedule-wrapper-header a.setting  {
+	display:block;
+	float:right;
+	width:25px;
+	height:25px;
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+	background:url(images/settings.png) no-repeat center center;
+	cursor:pointer;
+	margin-left:15px;
+	margin-top:3px;
+
+}
+
+#schedule-wrapper-header a.setting:hover {
+	opacity:0.5;
+
+}
+
+#schedule-wrapper-header .group-button {
+	float:right;
+	border-radius:3px;
+	overflow:hidden;
+	margin-left:15px;
+
+}
+
+#schedule-wrapper-header .group-button a {
+	float:left;
+	background:#929292;
+	color:#fff;
+	padding:7px 14px;
+	border-right:1px solid #7d7d7d;
+
+}
+
+#schedule-wrapper-header .group-button a:hover {
+	background:#7d7d7d;
+
+
+}
+
+#schedule-wrapper-header .group-button a.active {
+	background:#3e3e3e;
+
+
+}
+
+#schedule-wrapper-header .group-button a:last-child {
+
+}
+
+#schedule-date-now {
+	position:absolute;
+	width:315px;
+	top: 39px;
+	left: 580px;
+	font-size:16px;
+	color:#0393cc;
+	text-align:center;
+
+}
+
+#schedule-wrapper-header a.schedule-control {
+	
+	width:8px;
+	height:8px;
+	position:absolute;
+	cursor:pointer;
+	
+
+}
+
+#schedule-wrapper-header a.schedule-control:hover {
+	opacity:0.5;
+
+}
+
+#schedule-wrapper-header a.schedule-control.schedule-next {
+	background:url(images/schedule-next.png) no-repeat center center;
+	right:0px;
+	top:5px;
+
+}
+
+
+#schedule-wrapper-header a.schedule-control.schedule-prev {
+	background:url(images/schedule-prev.png) no-repeat center center;
+	left:0px;
+	top:5px;
+
+}
+
+#schedule-main-content-wrapper {
+	width:1400px;
+	background:#fff;
+	border:1px solid #d1d5d7;
+	margin-top:35px;
+	position:relative;
+
+}
+
+#schedule-main-head {
+	background:#dbdbdb;
+	height:45px;
+	border-bottom:1px solid #cbcbcb;
+
+}
+
+.schedule-column-left {
+	width:14.3%;
+	border-right:1px solid #cbcbcb;
+	height:100%;
+	float:left;
+	background:#dbdbdb;
+}
+
+.schedule-column-right {
+	width:85.6%;
+	height:100%;
+	float:left;
+
+}
+
+.schedule-staff {
+	padding:18px 15px 19px;
+
+}
+
+.schedule-column {
+	width:7%;
+	height:100%;
+	border-right:1px solid #cbcbcb;
+	float:left;
+	position:relative;
+	
+
+}
+
+.time-block {
+	font-size:13px;
+	color:#676767;
+	position: absolute;
+	bottom: 5px;
+	left: 7px;
+
+}
+
+
+
+.schedule-column:last-child {
+	
+
+}
+
+
+
+.schedule-staff-picture {
+	width:40px;
+	height:40px;
+	overflow:hidden;
+	position:relative;
+
+}
+
+.schedule-staff-picture .staff-color-bar {
+	width:6px;
+	height:100%;
+	position:absolute;
+	top:0px;
+	left:0px;
+
+}
+
+.schedule-staff-picture {
+	
+	float:left;
+
+
+}
+
+.schedule-staff-txt {
+	float:right;
+	font-size:13px;
+	color:#676767;
+	width:70%;
+
+}
+
+.schedule-staff-txt .schedule-staff-name{
+	width:100%;
+	text-overflow:ellipsis;
+	font-weight:bold;
+
+}
+
+.schedule-staff-txt .schedule-staff-status{
+	color:#8e8e8e;
+
+}
+
+.schedule-main-row {
+	height:77px;
+	position:relative;
+
+}
+
+.schedule-main-row .schedule-column-right {
+	position:relative;
+	border-bottom:1px solid #ededed;
+
+
+}
+
+.schedule-main-row .schedule-column-left {
+
+	border-bottom:1px solid #cbcbcb;
+
+}
+
+.schedule-main-row .schedule-column {
+	border-right:1px solid #ededed;
+	
+
+}
+
+
+.schedule-main-row .schedule-column:last-child {
+
+}
+
+.schedule-column-half {
+	width:50%;
+	height:100%;
+	border-right:1px solid #f7f7f7;
+
+}
+
+.schedule-tile {
+	position:absolute;
+	background:#d7d7d7;
+	border-radius:3px;
+	height:55px;
+	z-index:999;
+	margin-top:11px;
+	cursor:move;
+
+}
+
+.schedule-tile:hover {
+	background:#cccaca;
+	
+
+}
+
+.schedule-tile .staff-color-bar {
+width: 6px;
+height: 100%;
+position: absolute;
+top: 0px;
+left: 0px;
+border-radius:3px 0px 0px 3px;
+}
+
+.schedule-tile-content {
+	padding: 7px 0px 0px 22px;
+	width: 80%;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	
+
+}
+
+.schedule-tile-content div {
+	text-overflow:ellipsis;
+	width:100%;
+	overflow:hidden;
+	display:block;
+	white-space: nowrap;
+
+}
+
+.schedule-tile-time{
+	font-size:12px;
+	color:#000000;
+	font-weight:bold;
+	line-height:1em;
+}
+
+.schedule-tile-title{
+	font-size:12px;
+	color:#6b6b6b;
+	font-weight:bold;
+	line-height:1em;
+}
+
+.schedule-tile-name{
+	font-size:12px;
+	color:#8b8b8b;
+	line-height:10px;
+	
+	
+
+}
+
+.schedule-tile-suburb{
+	font-size:12px;
+	color:#888888;
+	line-height:10px;
+
+}
+
+.schedule-tile .job-status-flag{
+	position:absolute;
+	right: 15px;
+	top: -2px;
+
+}
+
+#unassign .schedule-tile {
+	opacity:1;
+	background:#fff;
+
+}
+
+
+#unassign .schedule-staff-txt {
+	float:left;
+	padding-left:15px;
+	background:url(images/unassign-arrow-down.png) no-repeat  left center;
+	
+
+}
+
+#unassign .schedule-column {
+	
+	border-right:1px solid #e2e2e2;
+
+}
+
+#unassign .schedule-column-half {
+	border-right:1px solid #ebebeb;
+
+}
+
+#unassign .schedule-column-right {
+	background:#f3f3f3;
+
+}
+
+#now-line {
+	width:1px;
+	height:100%;
+	background:#fbacae;
+	position:absolute;
+	top:0px;
+	left:794px;
+	z-index:999;
+
+}
+
+#schedule-wrapper .mCSB_container  {
+	margin-right:0px;
+
+}
+
+#schedule-wrapper .mCSB_scrollTools .mCSB_draggerRail {
+	width:5px;
+	border-radius:0px;
+
+}
+
+#schedule-wrapper .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+	width:5px;
+	border-radius:0px;
+
+}
+
+#schedule-main-content {
+	height:700px;
+	overflow:hidden;
+	width:100%;
+
+}
+
+#dashboard-top-links #partner  {
+
+
+}
+
+
+#dashboard-top-links #partner {
+	
+	background: url(images/youtube_video.png) no-repeat center 25px;
+
+}
+
+body, html {
+	height:100%;
+
+}
+
+.schedule .wideWindow {
+margin-right: 0px !important;
+width: 100% !important;
+height:100%;
+}
+
+#schedule-wrapper-left {
+	width: 375px !important;
+	background:#fff;
+	height:100%;
+	vertical-align:top;
+
+}
+
+#schedule-wrapper {
+	height:100%;
+
+}
+
+td.schedule-leftbar-right {
+	vertical-align:top;
+	
+
+}
+
+table#schedule-sidebar {
+	height:100%;
+
+}
+
+#schedule-wrapper-middle {
+	width:50px;
+	background:#a9a9a9;
+	vertical-align:top;
+	border-right:1px solid #949494;
+	border-left:1px solid #949494;
+
+}
+
+#sidebar-toggle-button {
+	width:auto;
+	height:50px;
+	background:#9c9c9c url(images/schedule-toggle-button.png) no-repeat center center;
+	display:block;
+	border-bottom:1px solid #949494;
+	cursor:pointer;
+
+}
+
+#sidebar-toggle-button:hover {
+	background:#969696 url(images/schedule-toggle-button.png) no-repeat center center;
+
+}
+
+#schedule-joblist-header {
+	padding:20px;
+	padding-bottom:0px;
+
+}
+
+#schedule-joblist-header h3 {
+	font-size:18px;
+	color:#007ac4;
+	font-weight:normal;
+	margin-bottom:10px;
+
+}
+
+#schedule-joblist-header .workgroup-select {
+margin-left: 0px;
+box-shadow: none;
+padding: 9px 15px 7px 10px;
+margin-top: 0px;
+width:190px;
+background: url(images/select-arrow.png) no-repeat right 12px #fff !important;
+font-size:12px;
+color:#969696;
+}
+
+#schedule-joblist-header .group-button {
+float: right;
+border-radius: 3px;
+overflow: hidden;
+margin-left: 10x;
+}
+
+#schedule-joblist-header .group-button a.active {
+background: #3e3e3e;
+}
+
+#schedule-joblist-header .group-button a {
+float: left;
+background: #929292;
+color: #fff;
+padding: 7px 14px 8px;
+border-right: 1px solid #7d7d7d;
+}
+
+#schedule-joblist-header .group-button a:hover {
+	background:#7d7d7d;
+
+
+}
+
+#schedule-search-txt {
+	
+	margin-top: 5px !important;
+box-shadow: none;
+padding: 9px 15px 7px 10px;
+margin-top: 0px;
+width:92%;
+background: url(images/search-icon-2.png) no-repeat right center #fff !important;
+font-size:12px;
+color:#969696;
+
+}
+
+#filter-by-time-title {
+	margin-top:5px;
+	margin-bottom:5px;
+
+}
+
+
+#filter-by-time-title a{
+	font-size:12px;
+	color:#007ac4;
+	display:block;
+	padding:0px 5px;
+	
+
+}
+
+#filter-by-time-title ul {
+	float:right;
+
+}
+
+#filter-by-time-title li {
+	float:left;
+	
+	
+
+}
+
+#filter-by-time-title li:nth-child(2) {
+	background:url(images/filter-by-time-separator.png) no-repeat left center;
+}
+
+#schedule-joblist-wrapper .schedule-tile {
+position: relative;
+width:344px;
+
+
+
+
+}
+
+#schedule-joblist-wrapper {
+	padding:20px;
+	padding-top:0px;
+	padding-right:0px;
+	height: 745px;
+    overflow: hidden;
+
+}
+
+#schedule-joblist-wrapper .schedule-tile {
+	height:79px;
+
+}
+
+#schedule-joblist-wrapper .schedule-tile .job-status-flag{ 
+right: 40px;
+
+}
+
+.job-tile-controls a {
+	width:20px;
+	height:20px;
+	display:block;
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+	margin-bottom:3px;
+
+}
+
+.job-tile-controls a:hover {
+	opacity:0.5;
+
+}
+
+.job-tile-controls .job-tile-edit{
+	background:url(images/job-tile-control-edit.png) no-repeat center center;
+
+}
+
+.job-tile-controls .job-tile-copy{
+	background:url(images/job-tile-control-copy.png) no-repeat center center;
+
+}
+
+.job-tile-controls .job-tile-delete{
+	background:url(images/job-tile-control-delete.png) no-repeat center center;
+
+}
+
+.job-tile-controls{
+	background: #8e8e8e;
+	padding:5px;
+	float:left;
+	position:absolute;
+	right:0px;
+	top:0px;
+	border-radius:0px 3px 3px 0px;
+
+}
+
+.schedule-tile .status.green {
+	color:#6ab900;
+
+
+}
+
+.schedule-tile .status.red {
+	color:#e12929;
+
+
+}
+
+.schedule-tile .status.orange {
+	color:#f08f0d;
+
+
+}
+
+#schedule-joblist-wrapper .schedule-tile.unassign {
+	background:#fff;
+	border:1px solid #dadada;
+
+
+}
+
+#schedule-joblist-wrapper .schedule-tile.unassign .job-tile-controls {
+	background:#fff;
+	border-left: 1px solid #dadada;
+
+}
+
+#schedule-joblist-wrapper  .mCustomScrollBox>.mCSB_scrollTools {
+width: 16px;
+height: 100%;
+top: 10px;
+right: 3px;
+}
+
+h3#unassign-wrapper-toggle{
+	
+	padding-left: 15px;
+background: url(images/unassign-arrow-down.png) no-repeat left center;
+font-size: 13px;
+color: #676767;
+
+
+}
+
+#unassign-wrapper .schedule-main-row {
+	overflow:hidden;
+	height:78px;
+	
+
+}
+
+#unassign-wrapper .schedule-main-row .schedule-column-left, #unassign-wrapper .schedule-main-row .schedule-column-right {
+
+height:77px;
+}
+
+#unassign-wrapper .schedule-main-row {
+	transition: all .25s ease-in-out;
+-moz-transition: ally .25s ease-in-out;
+-webkit-transition: all .25s ease-in-out;
+
+}
+
+#unassign .schedule-staff-txt #unassign-toggle-inactive, #unassign .schedule-staff-txt #unassign-toggle-active {
+	cursor:pointer;
+
+}
+
+#schedule-joblist-edit-wrapper {
+	background:#9c9c9c;
+	padding:20px;
+
+}
+
+#schedule-joblist-edit-wrapper h3 {
+	font-size: 18px;
+	color: #fff;
+	font-weight: normal;
+	margin-bottom: 10px;
+
+
+}
+
+.schedule-edit-form-item input, .schedule-edit-form-item select {
+	margin-top: 5px !important;
+	box-shadow: none;
+	padding: 7px 15px 7px 10px;
+	margin-top: 0px;
+	width: 230px;
+	background: #fff !important;
+	font-size: 12px;
+	color: #969696;
+	border:1px solid #7c7c7c;
+	border-radius:3px;
+	margin-left:0px;
+	
+
+}
+
+.schedule-edit-form-item select  {
+	width: 256px;
+	background: url(images/select-arrow.png) no-repeat right 10px #fff !important;
+
+}
+
+.schedule-edit-form-item {
+	margin-bottom:5px;
+
+}
+
+.schedule-edit-form-item input:focus {
+	outline:none;
+	box-shadow:none;
+
+}
+
+.schedule-edit-form-item label {
+	color:#fff;
+	width:80px;
+	display:inline-block;
+	margin-top:8px;
+}
+
+#schedule-job-edit-button {
+	background:#308dd4;
+	border:1px solid #007ab9;
+	border-radius:3px;
+	color:#fff;
+	font-size:12px;
+	width:105px;
+	text-align:center;
+	padding:10px 0px;
+	font-weight:bold;
+	text-transform:uppercase;
+	margin-top:10px;
+	float:left;
+	cursor:pointer;
+	transition: all .25s ease-in-out;
+-moz-transition: ally .25s ease-in-out;
+-webkit-transition: all .25s ease-in-out;
+margin-right:10px;
+
+
+}
+
+#schedule-job-edit-button:hover {
+	background:#2480c6;
+
+
+}
+
+#schedule-job-cancel-button {
+	background:#fff;
+	border:1px solid #fff;
+	border-radius:3px;
+	color:#969696;
+	font-size:12px;
+	width:105px;
+	text-align:center;
+	padding:10px 0px;
+	font-weight:bold;
+	text-transform:uppercase;
+	margin-top:10px;
+	float:left;
+	cursor:pointer;
+	transition: all .25s ease-in-out;
+-moz-transition: ally .25s ease-in-out;
+-webkit-transition: all .25s ease-in-out;
+
+}

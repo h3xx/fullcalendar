@@ -109,4 +109,10 @@ html .fc,
 	overflow: hidden;
 	}
 	
+	.fcr-nlb{
+		border-left-width: 0px !important;
+	}
+	
+	
+	
 	

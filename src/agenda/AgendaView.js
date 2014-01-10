@@ -4,6 +4,8 @@ setDefaults({
 	allDayText: 'all-day',
 	firstHour: 6,
 	slotMinutes: 30,
+	slotMinutesRes: 15,
+	slotSkipRes: 2, //Means step 2 higher
 	defaultEventMinutes: 120,
 	axisFormat: 'h(:mm)tt',
 	timeFormat: {
@@ -592,7 +594,7 @@ function AgendaView(element, calendar, viewName) {
 	
 	
 	colContentPositions = new HorizontalPositionCache(function(col) {
-		return dayBodyCellInners.eq(col);
+	return dayBodyCellInners.eq(col);
 	});
 	
 	

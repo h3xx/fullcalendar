@@ -3,16 +3,16 @@
 <head>
 <link href='../build/out/fullcalendar.css' rel='stylesheet' />
 <link href='../build/out/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link href='css/calcss.css' rel='stylesheet' />
 <script src='../build/out/jquery.js'></script>
 <script src='../build/out/jquery-ui.js'></script>
 <script src="../angular/angular.js"></script>
 <script src='../build/out/fullcalendar.js'></script>
 <script src="../angular/calendar.js"></script>
-<script src="caldemo.js"></script>
+<script src="js/app.js"></script>
 
-<div ng-controller="CalendarCtrl">
-	  <div class="calendar" ng-model="eventSources" modelres="resource" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-</div>
+<script src="js/controllers/calcontrollers.js"></script>
+<script src="js/directives/caldirectives.js"></script>
 
 <style type='text/css'>
 	body {
@@ -28,6 +28,12 @@
 </style>
 </head>
 <body>
+<div ng-controller="CalendarCtrl">
+	  <div class="calendar" ng-model="eventSources" modelres="resource" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+</div>
+
+<div data-popup></div>	
+
 <div id='calendar'></div>
 <div id='contextMenuContainer' style='background-color:#f0f0f0;width:100px;height:100px;display:none;z-index:999;border-radius:5px;border:1px solid black;position:absolute;'></div>
 </body>

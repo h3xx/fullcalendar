@@ -2,7 +2,6 @@
 function Header(calendar, options) {
 	var t = this;
 	
-	
 	// exports
 	t.render = render;
 	t.destroy = destroy;
@@ -70,8 +69,11 @@ function Header(calendar, options) {
 						if (buttonClick) {
 							var icon = options.theme ? smartProperty(options.buttonIcons, buttonName) : null; // why are we using smartProperty here?
 							var text = smartProperty(options.buttonText, buttonName); // why are we using smartProperty here?
+							
+							//"<span class='fc-button fc-button-" + buttonName + " " + tm + "-state-default'>" +
+							
 							var button = $(
-								"<span class='fc-button fc-button-" + buttonName + " " + tm + "-state-default'>" +
+								"<span class='fc-button-" + buttonName + "'>" +
 									(icon ?
 										"<span class='fc-icon-wrap'>" +
 											"<span class='ui-icon ui-icon-" + icon + "'/>" +

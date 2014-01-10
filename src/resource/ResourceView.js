@@ -87,7 +87,7 @@ function ResourceView(element, calendar, viewName) {
 	function renderBasic(maxr, r, c, showNumbers) {
 		rowCnt = r;
 		colCnt = c;
-
+		
 		updateOptions();
 		var firstTime = !body;
 		if (firstTime || viewName == 'resourceMonth') {
@@ -123,14 +123,24 @@ function ResourceView(element, calendar, viewName) {
 		var contentClass = tm + "-widget-content";
 		var i, j, id, resourceName;
 		var table;
-		var resources = t.getResources;
+		var resources = t.getResources;	
+		var grain = opt('slotSkipRes');
+		
+		var skip = '';
+		var prod = 0;
+		
 		s =
 			"<table class='fc-border-separate' style='width:100%' cellspacing='0'>" +
 			"<thead>" +
 			"<tr class='fc-first fc-last'><th class='fc-resourceName'>&nbsp;</th>";
 		for (i=0; i<colCnt; i++) {
+			prod = (i+1) % grain;
+			if ((i > 0) && (prod == 0)){
+				skip = 'fcr-nlb';
+			}
 			s +=
-				"<th class='fc- " + headerClass + "'/>";
+				"<th class='fc- " + headerClass + " " + skip +"'/>";
+			skip = '';
 		}
 		s +=
 			"</tr>" +
@@ -147,9 +157,15 @@ function ResourceView(element, calendar, viewName) {
 			s +=
 				"<tr class='fc-resourcerow-" + id + "'><td class='fc-resourceName'>" + resourceHTML + "</td>";
 		
+			skip = '';
+			prod = 0;
 			for (j=0; j<colCnt; j++) {
+				prod = (j+1) % grain;
+				if ((j > 0) && (prod == 0)){
+					skip = 'fcr-nlb';
+				}
 				s +=
-					"<td class='fc- " + contentClass + " fc-day" + j + " fc-resource" + id +"'>" + // need fc- for setDayID
+					"<td class='fc- " + contentClass + " fc-day" + j + " fc-resource" + id +" " + skip + "'>" + // need fc- for setDayID
 					"<div>" +
 					(showNumbers ?
 						"<div class='fc-day-number'/>" :
@@ -160,6 +176,7 @@ function ResourceView(element, calendar, viewName) {
 					"</div>" +
 					"</div>" +
 					"</td>";
+				skip = '';
 			}
 			s +=
 				"</tr>";
@@ -176,7 +193,7 @@ function ResourceView(element, calendar, viewName) {
 		bodyCells = body.find('td:not(td.fc-resourceName)');
 		bodyFirstCells = bodyRows.children().filter(':first-child');
 		bodyCellTopInners = bodyRows.eq(0).find('div.fc-day-content div');
-		
+			
 		// trigger resourceRender callback now when the skeleton is ready
 		body.find('td.fc-resourceName').each(function(i, resourceElement) {
 			trigger('resourceRender', resources[i], resourceElement, viewName);
@@ -217,19 +234,28 @@ function ResourceView(element, calendar, viewName) {
 		var weekendTester;
 		var indexCorrecter=0;
 		var weekends = opt('weekends');
+		var grain = opt('slotSkipRes');
+		
+		
 		headCells.each(function(i, _cell) {
-			cell = $(_cell);
-			date = indexDate(i);
-
-			cell.html(formatDate(date, colFormat));
-			if (date.getDay() == 0 || date.getDay() == 6) cell.addClass('fc-weekend');
 			
-			if (date.getDay() == 1 && viewName == "resourceNextWeeks") cell.html(cell.html()+'<br>'+opt('weekPrefix')+' '+iso8601Week(date));
+			var prod = (i+1) % grain;
+			if ((i > 0) && (prod == 0)){
+				//Skip
+			}else{
+				cell = $(_cell);
+				date = indexDate(i);
 
-			// setDayID does not work at all for resourceviews because there can be same id twice. Set date as timestamp works better
-			cell.each(function(i, _cell) {
-				_cell.className = _cell.className.replace(/^fc-\w*/, 'fc-id' + date.getTime());
-			});
+				cell.html(formatDate(date, colFormat));
+				if (date.getDay() == 0 || date.getDay() == 6) cell.addClass('fc-weekend');
+
+				if (date.getDay() == 1 && viewName == "resourceNextWeeks") cell.html(cell.html()+'<br>'+opt('weekPrefix')+' '+iso8601Week(date));
+
+				// setDayID does not work at all for resourceviews because there can be same id twice. Set date as timestamp works better
+				cell.each(function(i, _cell) {
+					_cell.className = _cell.className.replace(/^fc-\w*/, 'fc-id' + date.getTime());
+				});
+			}
 		});
 		
 		indexCorrecter=0;
@@ -340,7 +366,7 @@ function ResourceView(element, calendar, viewName) {
 		var rowEnd = addDays(cloneDate(rowStart), colCnt);
 
 		if (viewName == 'resourceDay') {
-			rowEnd = addMinutes(cloneDate(rowStart), opt('slotMinutes')*colCnt);
+			rowEnd = addMinutes(cloneDate(rowStart), opt('slotMinutesRes')*colCnt);
 		}
 		else if (!opt('weekends')) {
 			rowEnd = cloneDate(t.visEnd);
@@ -352,8 +378,8 @@ function ResourceView(element, calendar, viewName) {
 		if (stretchStart < stretchEnd) {
 			var colStart, colEnd;
 			if (viewName == 'resourceDay') {
-				colStart = (stretchStart-rowStart)/1000/60/opt('slotMinutes');
-				colEnd = (stretchEnd-rowStart)/1000/60/opt('slotMinutes');
+				colStart = (stretchStart-rowStart)/1000/60/opt('slotMinutesRes');
+				colEnd = (stretchEnd-rowStart)/1000/60/opt('slotMinutesRes');
 			}
 			else {
 				if (rtl) {
@@ -413,7 +439,7 @@ function ResourceView(element, calendar, viewName) {
 	
 	function renderSelection(startDate, endDate, allDay, overlayRow) {
 		if (viewName == 'resourceDay') {
-			renderDayOverlay(startDate, addMinutes(cloneDate(endDate), opt('slotMinutes')), true, overlayRow); // rebuild every time???
+			renderDayOverlay(startDate, addMinutes(cloneDate(endDate), opt('slotMinutesRes')), true, overlayRow); // rebuild every time???
 		}
 		else {
 			renderDayOverlay(startDate, addDays(cloneDate(endDate), 1), true, overlayRow); // rebuild every time???
@@ -536,7 +562,7 @@ function ResourceView(element, calendar, viewName) {
 	
 	function _cellDate(col) {
 		if (viewName == 'resourceDay') {
-			return addMinutes(cloneDate(t.visStart), col*opt('slotMinutes'));
+			return addMinutes(cloneDate(t.visStart), col*opt('slotMinutesRes'));
 		}
 		else {	
 			if (!opt('weekends')) {
@@ -569,14 +595,14 @@ function ResourceView(element, calendar, viewName) {
 	function timeOfDayCol(datetime) {
 		var hours = datetime.getHours();
 		var minutes = datetime.getMinutes();
-		var slotMinutes = opt('slotMinutes');
+		var slotMinutes = opt('slotMinutesRes');
 		var slot, diff, minDiff, closestMinute;
 		
 		// round minutes to closest minuteslot
 		for ( var i = 0 ; i <= 60/slotMinutes; i++) {
 			slot = i*slotMinutes;
 
-			diff = Math.abs(slot-minutes);
+			diff = Math.abs(slot - minutes);
 			
 			if (diff <= minDiff || i == 0) {
 				minDiff = diff;
@@ -587,7 +613,7 @@ function ResourceView(element, calendar, viewName) {
 				hours++;
 				closestMinute = 0;
 			}
-		}		
+		}	
 		minutes = closestMinute;
 
 		for ( var i = 0; i < colCnt; i++) {
@@ -658,7 +684,7 @@ function ResourceView(element, calendar, viewName) {
 					if (+dates[0] == +dates[1]) {
 						reportDayClick(dates[0],(viewName == 'resourceDay' ? false : true), ev, resources[row]);
 					}
-					reportSelection(dates[0], (viewName == 'resourceDay' ? addMinutes(dates[1], opt('slotMinutes')) : dates[1]), (viewName == 'resourceDay' ? false : true), ev, resources[row]);
+					reportSelection(dates[0], (viewName == 'resourceDay' ? addMinutes(dates[1], opt('slotMinutesRes')) : dates[1]), (viewName == 'resourceDay' ? false : true), ev, resources[row]);
 				}
 			});
 		}
